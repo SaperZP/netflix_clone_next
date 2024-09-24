@@ -1,19 +1,15 @@
 import Link from "next/link";
-import ThemeToggler from "@/components/ThemeToggler";
 import Image from "next/image";
-
-const Navbar = () => {
+import UserButton from "./UserButton";
+export default function Navbar() {
   return (
     <nav className="main-nav">
       <Link href="/">
         <div className="relative h-4 lg:h-7 w-20">
-          <Image src="/images/logo.png" alt="logo" fill />
+          <Image src="/images/logo.png" alt="" fill />
         </div>
       </Link>
-
-      <ThemeToggler />
+      <UserButton/>
     </nav>
   );
-};
-
-export default Navbar;
+}

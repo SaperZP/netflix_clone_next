@@ -1,4 +1,5 @@
 "use client";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -10,7 +11,7 @@ import {
   updateProfile,
 } from "@firebase/auth";
 import { auth } from "@/auth/fierbase";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 type AuthProviderProps = {
@@ -25,20 +26,28 @@ interface User {
 
 type AuthContextType = {
   user: User | null;
-  signUp: (email: string, password: string, displayName: string) => Promise<void>;
+  signUp: (
+    email: string,
+    password: string,
+    displayName: string,
+  ) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   logOut: () => void;
   resetPassword: (email: string) => Promise<void>;
 };
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
-  const signUp = async (email: string, password: string, displayName: string) => {
+  const signUp = async (
+    email: string,
+    password: string,
+    displayName: string,
+  ) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser!, { displayName });
@@ -84,14 +93,24 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const authContextOutput = { user, signUp, signIn, signInWithGoogle, logOut, resetPassword };
+  const authContextOutput = {
+    user,
+    signUp,
+    signIn,
+    signInWithGoogle,
+    logOut,
+    resetPassword,
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         const { email, displayName, photoURL } = currentUser;
         setUser({ email, displayName, photoURL });
-        sessionStorage.setItem("user", JSON.stringify({ email, displayName, photoURL }));
+        sessionStorage.setItem(
+          "user",
+          JSON.stringify({ email, displayName, photoURL }),
+        );
       } else {
         setUser(null);
         sessionStorage.clear();
@@ -99,7 +118,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   }, []);
 
-  return <AuthContext.Provider value={authContextOutput}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={authContextOutput}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

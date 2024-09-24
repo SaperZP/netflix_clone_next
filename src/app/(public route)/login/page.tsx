@@ -1,11 +1,10 @@
-import React from 'react';
+import AuthCard from "@/components/AuthCard";
+import LoginForm from "@/components/LoginForm";
 
-const LoginPage = () => {
+export default function LoginPage() {
   return (
-      <div>
-        login page
-      </div>
+    <AuthCard title="Login">
+      <LoginForm />
+    </AuthCard>
   );
-};
-
-export default LoginPage;
+}
