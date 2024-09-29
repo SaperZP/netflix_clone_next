@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import UserButton from "./UserButton";
-export default function Navbar() {
+
+const Navbar = () => {
   return (
     <nav className="main-nav">
       <Link href="/">
@@ -13,3 +14,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default Navbar;

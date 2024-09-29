@@ -10,7 +10,7 @@ import { Form } from "./ui/form";
 import GoogleIcon from "@/app/icons/GoogleIcon";
 import { useAuth } from "@/context/AuthContext";
 
-export default function LoginForm() {
+const LoginForm = () => {
   const { signInWithGoogle, signIn, resetPassword } = useAuth();
 
   const loginSchema = z.object({
@@ -82,3 +82,5 @@ export default function LoginForm() {
     </Form>
   );
 }
+
+export default LoginForm;

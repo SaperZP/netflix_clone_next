@@ -1,4 +1,5 @@
 "use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 
-export default function UserButton() {
+const UserButton = () => {
   const { user, logOut } = useAuth();
   return (
     <DropdownMenu>
@@ -51,4 +52,6 @@ export default function UserButton() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default UserButton;

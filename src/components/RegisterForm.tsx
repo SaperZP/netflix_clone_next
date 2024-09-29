@@ -1,4 +1,5 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -10,7 +11,7 @@ import { Form } from "./ui/form";
 import GoogleIcon from "@/app/icons/GoogleIcon";
 import { useAuth } from "@/context/AuthContext";
 
-export default function RegisterForm() {
+const RegisterForm = () => {
   const { signInWithGoogle, signUp } = useAuth();
 
   const registerSchema = z.object({
@@ -93,3 +94,5 @@ export default function RegisterForm() {
     </Form>
   );
 }
+
+export default RegisterForm;
