@@ -9,10 +9,11 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "@firebase/auth";
 import { auth } from "@/auth/fierbase";
 import { useRouter } from "next/navigation";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -33,7 +34,7 @@ type AuthContextType = {
   ) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
-  logOut: () => void;
+  logOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
 };
 
@@ -68,9 +69,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const logOut = () => {
-    signOut(auth);
-    toast.success("Logged out successfully.");
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      toast.success("Logged out successfully.");
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
   };
 
   const signInWithGoogle = async () => {
@@ -103,6 +108,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         const { email, displayName, photoURL } = currentUser;

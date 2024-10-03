@@ -12,12 +12,13 @@ import { useAuth } from "@/context/AuthContext";
 
 const UserButton = () => {
   const { user, logOut } = useAuth();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
           <AvatarImage src={user?.photoURL || "/images/default-slate.png"} />
-          <AvatarFallback>CN</AvatarFallback>
+          {/*<AvatarFallback>{user?.displayName}</AvatarFallback>*/}
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
