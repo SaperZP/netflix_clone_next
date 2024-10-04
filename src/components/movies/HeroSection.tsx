@@ -9,8 +9,6 @@ import Link from "next/link";
 export default async function HeroSection({ movie }: { movie: any }) {
   const videoKey = await getVideoKey(movie?.id);
 
-  console.log(videoKey);
-
   return (
     <div className="relative h-[60vh] w-full md:h-screen">
       <VideoSection videoKey={videoKey} />
