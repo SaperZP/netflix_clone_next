@@ -10,7 +10,7 @@ import {
   signOut,
   updateProfile,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithPopup
 } from "@firebase/auth";
 import { auth } from "@/auth/fierbase";
 import { useRouter } from "next/navigation";
@@ -115,12 +115,24 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        const { email, displayName, photoURL } = currentUser;
-        setUser({ email, displayName, photoURL });
-        sessionStorage.setItem(
-          "user",
-          JSON.stringify({ email, displayName, photoURL }),
-        );
+        const { email, displayName, photoURL, metadata } = currentUser;
+        const lastSignInTime = new Date(metadata.lastSignInTime!).getTime();
+        const currentTime = Date.now();
+        const timeDiff = currentTime - lastSignInTime;
+
+        if (timeDiff < 1000 * 60 * 10) {
+          const newUser = {
+            email,
+            displayName,
+            photoURL,
+          };
+
+          setUser(newUser);
+          sessionStorage.setItem("user", JSON.stringify(newUser));
+        } else {
+          setUser(null);
+          sessionStorage.clear();
+        }
       } else {
         setUser(null);
         sessionStorage.clear();

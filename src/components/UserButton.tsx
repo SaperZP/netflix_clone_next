@@ -18,7 +18,7 @@ const UserButton = () => {
       <DropdownMenuTrigger>
         <Avatar>
           <AvatarImage src={user?.photoURL || "/images/default-slate.png"} />
-          {/*<AvatarFallback>{user?.displayName}</AvatarFallback>*/}
+          <AvatarFallback>?</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -37,14 +37,12 @@ const UserButton = () => {
           <>
             <DropdownMenuItem asChild>
               <Link href="/profile" className="cursor-pointer">
-                {" "}
                 Profile
               </Link>
             </DropdownMenuItem>
 
             <DropdownMenuItem>
               <span className="cursor-pointer" onClick={() => logOut()}>
-                {" "}
                 Logout
               </span>
             </DropdownMenuItem>
