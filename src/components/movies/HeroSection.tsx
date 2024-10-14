@@ -5,9 +5,10 @@ import { Button } from "../ui/button";
 
 import { Play } from "lucide-react";
 import Link from "next/link";
+import { Movie } from "@/api/tmdbTypes";
 
-export default async function HeroSection({ movie }: { movie: any }) {
-  const videoKey = await getVideoKey(movie?.id);
+export default async function HeroSection({ movie }: { movie: Movie }) {
+  const videoKey = await getVideoKey(movie.id);
 
   return (
     <div className="relative h-[60vh] w-full md:h-screen">

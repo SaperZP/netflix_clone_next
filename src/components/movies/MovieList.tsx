@@ -1,6 +1,6 @@
 "use client";
 import MovieCard from "./MovieCard";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 
 export default function MovieList({ movies }: { movies: any }) {
