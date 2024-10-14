@@ -1,9 +1,14 @@
 "use client";
 import MovieCard from "./MovieCard";
-import React, { useRef } from "react";
+import React, { FC, useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
+import { Movie } from "@/api/tmdbTypes";
 
-export default function MovieList({ movies }: { movies: any }) {
+type MovieListProps = {
+  movies: Movie[];
+}
+
+const MovieList: FC<MovieListProps> = ({ movies }) => {
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref);
@@ -14,9 +19,11 @@ export default function MovieList({ movies }: { movies: any }) {
       ref={ref}
       {...events}
     >
-      {movies.map((movie: any) => (
+      {movies.map((movie) => (
         <MovieCard key={movie?.id} {...movie} />
       ))}
     </div>
   );
-}
+};
+
+export default MovieList;
