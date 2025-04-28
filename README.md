@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Netflix Clone
+
+A feature-rich, responsive Netflix clone built with Next.js, Tailwind CSS, and TypeScript.  
+It replicates core functionalities of the Netflix platform, such as user authentication, browsing movies, and streaming UI components.
+
+## Demo
+
+🌐 [Live Demo](https://movie-app-next-git-main-andriybs-projects.vercel.app)
+
+## Features
+
+- User authentication and protected routes
+- Browse and discover movie titles
+- Movie preview and playback interface
+- Fully responsive design for all devices
+- Optimized performance and seamless navigation
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn UI
+- React Hook Form
+- Axios
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository:
+
+```bash
+git clone https://github.com/SaperZP/netflix_clone_next.git
+cd netflix_clone_next
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be running at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+/components
+/pages
+/public
+/styles
+/utils
+```
 
-## Learn More
+- `components` — Reusable UI components
+- `pages` — Route pages (Next.js routing)
+- `public` — Static assets
+- `styles` — Global and custom styles
+- `utils` — Helper functions
 
-To learn more about Next.js, take a look at the following resources:
+## Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Add real movie API integration
+- Build a subscription payment page
+- Implement user profiles and recommendations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Author
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Andriy Bilous**  
+[Portfolio Website](https://bilous.info) | [GitHub](https://github.com/SaperZP) | [LinkedIn](https://www.linkedin.com/in/andriy-bilous)
